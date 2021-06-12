@@ -1,7 +1,13 @@
-// interface Window {
-// 	stream: MediaStream | null
-// }
-import Peer, { MediaConnection } from "skyway-js";
+declare global {
+  interface HTMLCanvasElement {
+    captureStream(frameRate?: number): MediaStream;
+  }
+
+  interface Window {
+    stream: MediaStream | null;
+  }
+}
+import Peer from "skyway-js";
 
 const video = document.getElementById("video") as HTMLVideoElement;
 const canvas = document.getElementById("canvas") as HTMLCanvasElement;
@@ -47,8 +53,9 @@ peer.on("open", () => {
 
 makeCall.onclick = () => {
   const theirId = theirIdInput.value;
-  // @ts-ignore window.stream exists;
-  const mediaConnection = peer.call(theirId, window.stream);
+  const canvasStream = canvas.captureStream();
+  // note: captureStream is experimental(Working Draft) feature. see: https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/captureStream
+  const mediaConnection = peer.call(theirId, canvasStream);
   mediaConnection.on("stream", (stream) => {
     theirVideo.srcObject = stream;
   });
