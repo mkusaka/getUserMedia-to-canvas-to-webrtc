@@ -8,20 +8,42 @@
   </head>
   <body>
     <p id="my-id"></p>
-    <input id="their-id" />
-    <button id="make-call">call</button>
+    <div>
+      their id
+      <input id="their-id" />
+    </div>
+    <div>
+      <button id="make-call">call</button>
+    </div>
+    their video
     <video id="their-video" autoplay muted playsinline></video>
+    video
     <video id="video" autoplay muted playsinline></video>
+    canvas
     <canvas id="canvas"></canvas>
+    <div>
+      width
+      <input type="number" id="width-input" value="1" max="2" min="0" />
+    </div>
+    <div>
+      height
+      <input type="number" id="height-input" value="1" max="2" min="0" />
+    </div>
   </body>
   <style>
-    #video {
-      min-width: calc(100vw - 10%);
-      min-height: 50%;
-    }
+    /*#video {*/
+    /*  min-width: calc(100vw - 10%);*/
+    /*  min-height: 50%;*/
+    /*}*/
     #canvas {
       min-width: calc(100vw - 10%);
       min-height: 50%;
+    }
+    video {
+      display: block;
+    }
+    canvas {
+      display: block;
     }
   </style>
 </html>
